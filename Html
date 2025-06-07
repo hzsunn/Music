@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trình phát nhạc</title>
+  <style>
+    body {
+      background: transparent;
+      font-family: Arial, sans-serif;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      padding: 10px;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.1);
+      margin: 5px 0;
+      border-radius: 5px;
+    }
+    li:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    audio {
+      width: 100%;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎵 Trình phát nhạc</h1>
+
+  <ul id="playlist">
+    <li onclick="playSong('Cdđ12.mp3')">Có Đôi Điều</li>
+    <li onclick="playSong('Yeu5.mp3')">Yêu 5</li>
+  </ul>
+
+  <audio id="audioPlayer" controls autoplay></audio>
+
+  <script>
+    function playSong(filename) {
+      const audioPlayer = document.getElementById('audioPlayer');
+      audioPlayer.src = filename;
+      audioPlayer.play();
+    }
+  </script>
+
+</body>
+</html>
