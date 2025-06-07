@@ -70,17 +70,16 @@
 
   <script>
     const tracks = [
-      { id: "Cdđ12.mp3", title: "Có Đôi Điều" },
-      { id: "Yeu5.mp3", title: "Yêu 5" }
-      { id: "Hnecr.m4a", title: "Hôm Nay Em Cưới Rồi" },
-    ];
+  { id: "Cdđ12.mp3", title: "Có Đôi Điều" },
+  { id: "Yeu5.mp3", title: "Yêu 5" },
+  { id: "Hnecr.mp3", title: "Hôm Nay Em Cưới Rồi" } // Bài mới
+];
 
-    const audioPlayer = document.getElementById('audio-player');
-
-    function playTrack(index) {
-      audioPlayer.src = `https://hzsunn.github.io/Music/${tracks[index].id}`;
-      audioPlayer.play();
-    }
+function playTrack(index) {
+  const audioPlayer = document.getElementById('audio-player');
+  audioPlayer.src = `https://hzsunn.github.io/Music/${tracks[index].id}`;
+  audioPlayer.play();
+}
   </script>
 
 </body>
