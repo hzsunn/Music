@@ -6,48 +6,77 @@
   <title>🎼 Của Huyền 🎼</title>
   <style>
     body {
-      background: transparent;
-      font-family: Arial, sans-serif;
-      color: #fff;
-      text-align: center;
+      margin: 0;
       padding: 20px;
-      background: linear-gradient(to right, #000000, #434343);
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+      background: url('https://hzsunn.github.io/Music/att.v6ZqkrSQhv-rv3XPEl79wSG4dQLMZ1e3UqSjeyHdLa4.jpeg') no-repeat center center fixed;
+      background-size: cover;
     }
+
+    h1 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+
     ul {
       list-style: none;
       padding: 0;
+      margin-bottom: 20px;
     }
-    li {
-      padding: 10px;
+
+    ul li {
+      padding: 12px 16px;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      margin: 10px auto;
+      max-width: 400px;
       cursor: pointer;
-      background: rgba(255, 255, 255, 0.1);
-      margin: 5px 0;
-      border-radius: 5px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(4px);
+      transition: 0.3s;
     }
-    li:hover {
+
+    ul li:hover {
       background: rgba(255, 255, 255, 0.2);
     }
+
+    .player-container {
+      max-width: 400px;
+      margin: auto;
+    }
+
     audio {
       width: 100%;
-      margin-top: 20px;
+      background: transparent;
     }
   </style>
 </head>
 <body>
 
-  <h1>❤️ Huyền ❤️  </h1>
+  <h1>愛你❤ </h1>
 
-  <ul id="playlist">
-    <li onclick="playSong('Cdđ12.mp3')">1. Có Đôi Điều</li>
-    <li onclick="playSong('Yeu5.mp3')">2. Yêu 5</li>
+  <ul id="music-list">
+    <li onclick="playTrack(0)">1. Có Đôi Điều</li>
+    <li onclick="playTrack(1)">2. Yêu 5</li>
   </ul>
 
-  <audio id="audioPlayer" controls autoplay></audio>
+  <div class="player-container">
+    <audio id="audio-player" controls autoplay></audio>
+  </div>
 
   <script>
-    function playSong(filename) {
-      const audioPlayer = document.getElementById('audioPlayer');
-      audioPlayer.src = filename;
+    const tracks = [
+      { id: "Cdđ12.mp3", title: "Có Đôi Điều" },
+      { id: "Yeu5.mp3", title: "Yêu 5" }
+    ];
+
+    const audioPlayer = document.getElementById('audio-player');
+
+    function playTrack(index) {
+      audioPlayer.src = `https://hzsunn.github.io/Music/${tracks[index].id}`;
       audioPlayer.play();
     }
   </script>
