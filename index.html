@@ -1,56 +1,81 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trình phát nhạc</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎵 Trình phát nhạc</title>
   <style>
     body {
-      background: transparent;
-      font-family: Arial, sans-serif;
-      color: #fff;
-      text-align: center;
+      margin: 0;
       padding: 20px;
-      background: linear-gradient(to right, #000000, #434343);
+      font-family: Arial, sans-serif;
+      text-align: center;
+      color: white;
+      background: url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1400&q=80') no-repeat center center fixed;
+      background-size: cover;
     }
+
+    h1 {
+      font-size: 24px;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      margin-bottom: 20px;
+    }
+
     ul {
       list-style: none;
       padding: 0;
+      margin-bottom: 20px;
     }
-    li {
-      padding: 10px;
+
+    ul li {
+      padding: 12px 18px;
+      background: rgba(255, 255, 255, 0.15);
+      margin: 10px auto;
+      border-radius: 25px;
+      max-width: 320px;
       cursor: pointer;
-      background: rgba(255, 255, 255, 0.1);
-      margin: 5px 0;
-      border-radius: 5px;
+      backdrop-filter: blur(4px);
+      transition: 0.3s;
     }
-    li:hover {
-      background: rgba(255, 255, 255, 0.2);
+
+    ul li:hover {
+      background: rgba(255, 255, 255, 0.25);
     }
+
+    .player-container {
+      max-width: 400px;
+      margin: auto;
+      backdrop-filter: blur(6px);
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 12px;
+      padding: 10px;
+    }
+
     audio {
       width: 100%;
-      margin-top: 20px;
+      border: none;
+      background: transparent;
     }
   </style>
 </head>
 <body>
+  <h1>🎶 Trình phát nhạc GitHub 🎧</h1>
 
-  <h1>🎵 Trình phát nhạc</h1>
-
-  <ul id="playlist">
-    <li onclick="playSong('Cdđ12.mp3')">Có Đôi Điều</li>
-    <li onclick="playSong('Yeu5.mp3')">Yêu 5</li>
+  <ul>
+    <li onclick="play('Cdd12.mp3')">1. Có Đôi Điều</li>
+    <li onclick="play('Yeu5.mp3')">2. Yêu 5</li>
   </ul>
 
-  <audio id="audioPlayer" controls autoplay></audio>
+  <div class="player-container">
+    <audio id="audio" controls autoplay></audio>
+  </div>
 
   <script>
-    function playSong(filename) {
-      const audioPlayer = document.getElementById('audioPlayer');
-      audioPlayer.src = filename;
-      audioPlayer.play();
+    const audio = document.getElementById('audio');
+    function play(file) {
+      audio.src = file;
+      audio.play();
     }
   </script>
-
 </body>
 </html>
