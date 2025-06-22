@@ -159,21 +159,6 @@ function playTrack(index) {
   audioPlayer.src = `https://hzsunn.github.io/Music/${tracks[index].id}`;
   audioPlayer.play();
 }
-      // Tự động chuyển bài khi hết
-  audioPlayer.addEventListener('ended', () => {
-    currentIndex = (currentIndex + 1) % tracks.length;
-    playTrack(currentIndex);
-  });
-
-  // Click để chọn bài
-  tracks.forEach((track, i) => {
-    track.addEventListener('click', () => {
-      playTrack(i);
-    });
-  });
-
-  // Bắt đầu với bài đầu tiên
-  playTrack(0);
   </script>
 
 </body>
