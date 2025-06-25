@@ -130,6 +130,8 @@
   </div>
 
   <script>
+    const audioPlayer = document.getElementById('audio-player');
+  let currentTrackIndex = 0;
     const tracks = [
   { id: "Cdđ12.mp3", title: "Có Đôi Điều" },
   { id: "Yeu5.mp3", title: "Yêu 5" },
@@ -185,11 +187,21 @@
 
 ];
 
-function playTrack(index) {
-  const audioPlayer = document.getElementById('audio-player');
-  audioPlayer.src = `https://hzsunn.github.io/Music/${tracks[index].id}`;
-  audioPlayer.play();
-}
+  function playTrack(index) {
+    currentTrackIndex = index;
+    audioPlayer.src = `https://hzsunn.github.io/Music/${tracks[index].id}`;
+    audioPlayer.play();
+  }
+
+  // Khi bài hát kết thúc => tự phát bài tiếp theo
+  audioPlayer.addEventListener('ended', () => {
+    currentTrackIndex++;
+    if (currentTrackIndex >= tracks.length) {
+      currentTrackIndex = 0; // Lặp lại từ đầu playlist
+    }
+    playTrack(currentTrackIndex);
+  });
+
   </script>
 
 </body>
