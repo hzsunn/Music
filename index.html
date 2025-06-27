@@ -1,45 +1,207 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <title>Test Danh Sách Nhạc</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎼 Của Huyền 🎼</title>
   <style>
-    ul { list-style:none; padding:0; max-width: 400px; margin:auto; }
-    li { margin: 10px 0; padding: 10px; background:#ddd; cursor:pointer; }
+    
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      color: pink;
+      text-align: center;
+      background: url('https://hzsunn.github.io/Music/IMG_1174.jpeg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 20px;
+    }
+
+    ul li {
+      padding: 12px 16px;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      margin: 10px auto;
+      max-width: 400px;
+      cursor: pointer;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(4px);
+      transition: 0.3s;
+    }
+
+    ul li:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .player-container {
+      max-width: 400px;
+      margin: auto;
+    }
+
+    audio {
+      width: 100%;
+      background: transparent;
+    }
   </style>
 </head>
 <body>
-  <h1>Danh sách bài hát</h1>
-  <ul id="music-list"></ul>
-  <audio id="audio-player" controls></audio>
+
+    
+  <h1>愛你❤ </h1>
+
+  <ul id="music-list">
+    <li onclick="playTrack(0)">51. Em Ơi Em Đừng Khóc</li>
+    <li onclick="playTrack(1)">52. Yêu 5</li>
+    <li onclick="playTrack(2)">53. Hôm Nay Em Cưới Rồi</li>
+    <li onclick="playTrack(3)">54. 1 Bước Yêu Vạn Dặm Đau</li>
+    <li onclick="playTrack(4)">55. Vì Anh Thương Em</li>
+    <li onclick="playTrack(5)">56. Từng Yêu</li>
+    <li onclick="playTrack(6)">57. Duyên Mình Lỡ</li>
+    <li onclick="playTrack(7)">58. Hình Bóng Của Mây</li>
+    <li onclick="playTrack(8)">59. Nên Chờ Hay Nên Quên</li>
+    <li onclick="playTrack(9)">60. Vạn Sự Tuỳ Duyên</li>
+    <li onclick="playTrack(10)">61. Sợ Phải Kết Thúc</li>
+    <li onclick="playTrack(11)">62. Trả Cho Em</li>
+    <li onclick="playTrack(12)">63. Khoảng Cách Đôi Ta</li>
+    <li onclick="playTrack(13)">64. Anh Không Sao Đâu</li>
+    <li onclick="playTrack(14)">65. Giả Vờ Nhưng Anh Yêu Em</li>
+    <li onclick="playTrack(15)">66. 10 Mất 1 Còn 0</li>
+    <li onclick="playTrack(16)">67. Vết Thương Trong Tim</li>
+    <li onclick="playTrack(17)">68. Thương Em Đến Già</li>
+    <li onclick="playTrack(18)">69. Chỉ Là Muốn Nói</li>
+    <li onclick="playTrack(19)">70. Hẹn Ước Từ Hư Vô</li>
+    <li onclick="playTrack(20)">71. Ừ Có Anh Đây</li>
+    <li onclick="playTrack(21)">72. Tình Yêu Mang Theo</li>
+    <li onclick="playTrack(22)">73. Anh Sẽ Là Người Ra Đi</li>
+    <li onclick="playTrack(23)">74. Thằng Hầu </li>
+    <li onclick="playTrack(24)">75. Chuyện Như Chưa Bắt Đầu</li>
+    <li onclick="playTrack(25)">76. Hai Chữ Đã Từng</li>
+    <li onclick="playTrack(26)">77. Cứ Ngỡ Là Anh</li>
+    <li onclick="playTrack(27)">78. Tình Đẹp Đến Mấy Cũng Tàn</li>
+    <li onclick="playTrack(28)">79. Giấc Mơ 1 Cuộc Tình</li>
+    <li onclick="playTrack(29)">80. Tìm Về</li>
+    <li onclick="playTrack(30)">81. Yêu Cô Bạn Thân</li>
+    <li onclick="playTrack(31)">82. Ngủ Ngon Nhé Vợ Tương Lai</li>
+    <li onclick="playTrack(32)">83. Vợ Tuyệt Vời Nhất</li>
+    <li onclick="playTrack(33)">84. Ánh Nắng Của Anh</li>
+    <li onclick="playTrack(34)">85. Sau Tất Cả</li>
+    <li onclick="playTrack(35)">86. Suy Nghĩ Trong Anh</li>
+    <li onclick="playTrack(36)">87. Điều Ước Giản Đơn</li>
+    <li onclick="playTrack(37)">88. E Là Không Thể</li>
+    <li onclick="playTrack(38)">89. Chúng Ta Không Thuộc Về Nhau</li>
+    <li onclick="playTrack(39)">90. Dòng Thời Gian</li>
+    <li onclick="playTrack(40)">91. Đếm Ngày Xa Em</li>
+    <li onclick="playTrack(41)">92. Bản Tình Ca Đầu Tiên</li>
+    <li onclick="playTrack(42)">93. Đơn Giản Anh Yêu Em</li> 
+    <li onclick="playTrack(43)">94. Nơi Này Có Anh</li>
+    <li onclick="playTrack(44)">95. Gấp Đôi Yêu Thương</li>
+    <li onclick="playTrack(45)">96. Em Là Món Quà Vô Giá </li>
+    <li onclick="playTrack(46)">97. Làm Vợ Anh Nhé</li>
+    <li onclick="playTrack(47)">98. Váy Cưới</li>
+    <li onclick="playTrack(48)">99. Tình Thương Phu Thê </li>
+    <li onclick="playTrack(49)">100. Hạnh Phúc Cuối Cùng</li>
+    <!-- Font từ Google -->
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<!-- Chữ Yêu Huyền -->
+<div style="
+  font-family: 'Pacifico', cursive;
+  color: #ff69b4;
+  font-size: 1.5em;
+  text-align: center;
+  margin-top: 20px;
+  text-shadow: 2px 2px 5px rgba(255, 105, 180, 0.4);
+">
+  Yêu Huyền Rất Nhiều ❤️
+</div>
+  </ul>
+
+  <div class="player-container">
+    <audio id="audio-player" controls autoplay></audio>
+  </div>
+ 
+    const audioPlayer = document.getElementById('audio-player');
+    const musicList = document.getElementById('music-list');
 
   <script>
     const audioPlayer = document.getElementById('audio-player');
-    const musicList = document.getElementById('music-list');
+  let currentTrackIndex = 0;
     const tracks = [
-      { id: "Ythuong/Emoiem.m4a", title: "51. Em Ơi Em Đừng Khóc" },
-      { id: "Yeu5.mp3", title: "52. Yêu 5" },
-      { id: "Hnecr.mp3", title: "53. Hôm Nay Em Cưới Rồi" },
-      // ...thêm đầy đủ 50 bài ở đây
-    ];
+  { id: "Ythuong/Emoiem.m4a", title: "Em Ơi Em Đừng Khóc" },
+  { id: "Yeu5.mp3", title: "Yêu 5" },
+  { id: "Hnecr.mp3", title: "Hôm Nay Em Cưới Rồi" },
+  { id: "1byvdd.m4a", title: "1 Bước Yêu Vạn Dặm Đau" },
+  { id: "Vocung.m4a", title: "Vì Anh Thương Em" },
+  { id: "Tungyeu.m4a", title: "Từng Yêu" },
+  { id: "Duyenminhlo.m4a", title: "Duyên Mình Lỡ" },
+  { id: "Hinhbongcuamay.m4a", title: "Hình Bóng Của Mây" },
+  { id: "Nenchohaynenquen.m4a", title: "Nên Chờ Hay Nên Quên" },
+  { id: "Vansutuyduyen.m4a", title: "Vạn Sự Tuỳ Duyên" },
+  { id: "Sophaiketthuc.m4a", title: "Sợ Phải Kết Thúc" },
+  { id: "Trachoem.m4a", title: "Trả Cho Em" },
+  { id: "Kcdt.m4a", title: "Khoảng Cách Đôi Ta" },
+  { id: "Acsd.m4a", title: "Anh Không Sao Đâu" },
+  { id: "Gvnaye.m4a", title: "Giả Vờ Nhưng Anh Yêu Em" },
+  { id: "1010.m4a", title: "10 Mất 1 Còn 0" },
+  { id: "Vetthuongtrongtim.m4a", title: "Vết Thương Trong Tim" },
+  { id: "Tedg.m4a", title: "Thương Em Đến Già" },
+  { id: "Chila.m4a", title: "Chỉ Là Muốn Nói" },
+  { id: "Henuoc.m4a", title: "Hẹn Ươc Từ Hư Vô" },
+  { id: "Ucoanhday.m4a", title: "Ừ Có Anh Đây" },
+  { id: "Tymt.m4a", title: "Tình Yêu Mang Theo" },
+  { id: "Aslnrd.m4a", title: "Anh Sẽ Là Người Ra Đi" },
+  { id: "Thanghau.m4a", title: "Thằng Hầu" },
+  { id: "Cncbd.m4a", title: "Chuyện Như Chưa Bắt Đầu" },
+  { id: "2cdt.m4a", title: "Hai Chữ Đã Từng " },
+  { id: "Cungolaanh.m4a", title: "Cứ Ngỡ Là Anh" },
+  { id: "tanthui.m4a", title: "Tình Đẹp Đến Mấy Cũng Tàn" },
+  { id: "Gm1ct.m4a", title: "Giấc Mơ 1 Cuộc Tình" },
+  { id: "Timve.m4a", title: "Tìm Về" },
+  { id: "Ycbt.m4a", title: "Yêu Cô Bạn Thân " },
+  { id: "Nnn.m4a", title: "Ngủ Ngon Nhé Vợ Tương Lai" },
+  { id: "Vtvn.m4a", title: "Vợ Tuyệt Vời Nhất" },
+  { id: "Anca.m4a", title: "Ánh Nắng Của Anh" },
+  { id: "Sautatca.m4a", title: "Sau Tất Cả" },
+  { id: "Snta.m4a", title: "Suy Nghĩ Trong Anh" },
+  { id: "Dugd.m4a", title: "Điều Ước Giản Đơn " },
+  { id: "Elakhongthe.m4a", title: "E là Không Thể" },
+  { id: "Ctktvn.m4a", title: "Chúng Ta Không Thuộc Về Nhau" },
+      { id: "Dtg.m4a", title: "Dòng Thời Gian" },
+  { id: "Demngayxaem.m4a", title: "Đếm Ngày Xa Em" },
+{ id: "Dgaye.m4a", title: "Đơn Giản Anh Yêu Em" },
+  { id: "Btcdt.m4a", title: "Bản Tình Ca Đầu Tiên" },
+  { id: "Noinaycoanh.m4a", title: "Nơi Này Có Anh" },
+  { id: "Gap2.m4a", title: "Gấp Đôi Yêu Thương" },
+      { id: "Elmqvg.m4a", title: "Em Là Món Quà Vô Giá" },
+{ id: "Lvan.m4a", title: "Làm Vợ Anh Nhé" },
+{ id: "Vaycuoi.m4a", title: "Váy Cưới" },
+{ id: "Ttpt.m4a", title: "Tình Thương Phu Thê" },
+{ id: "Hpcuoicung.m4a", title: "Hạnh Phúc Cuối Cùng" },
 
-    function playTrack(index) {
-      const track = tracks[index];
-      audioPlayer.src = `https://hzsunn.github.io/Music/${track.id}`;
-      audioPlayer.play();
-    }
 
-    function renderMusicList() {
-      musicList.innerHTML = '';
-      tracks.forEach((track, i) => {
-        const li = document.createElement('li');
-        li.textContent = track.title;
-        li.onclick = () => playTrack(i);
-        musicList.appendChild(li);
-      });
-    }
+];
 
-    renderMusicList();
+
+    // Tự chuyển bài khi hết
+    audioPlayer.addEventListener("ended", () => {
+      currentTrackIndex++;
+      if (currentTrackIndex >= tracks.length) currentTrackIndex = 0;
+      playTrack(currentTrackIndex);
+    });
+
+ 
   </script>
+
 </body>
 </html>
