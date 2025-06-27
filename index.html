@@ -131,9 +131,6 @@
     <audio id="audio-player" controls autoplay></audio>
   </div>
  
-    const audioPlayer = document.getElementById('audio-player');
-    const musicList = document.getElementById('music-list');
-
   <script>
     const audioPlayer = document.getElementById('audio-player');
   let currentTrackIndex = 0;
@@ -191,6 +188,14 @@
 
 
 ];
+    function playTrack(index) {
+    currentTrackIndex = index;
+    const track = tracks[index];
+    audioPlayer.src = `https://hzsunn.github.io/Music/${track.id}`;
+    audioPlayer.play();
+  }
+
+  
 
 
     // Tự chuyển bài khi hết
