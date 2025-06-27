@@ -2,208 +2,44 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>🎼 Của Huyền 🎼</title>
+  <title>Test Danh Sách Nhạc</title>
   <style>
-    body {
-      margin: 0;
-      padding: 20px;
-      font-family: Arial, sans-serif;
-      color: pink;
-      text-align: center;
-      background: url('https://hzsunn.github.io/Music/IMG_1174.jpeg') no-repeat center center fixed;
-      background-size: cover;
-    }
-    h1 {
-      font-size: 22px;
-      margin-bottom: 20px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-      margin-bottom: 20px;
-      max-width: 400px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    ul li {
-      padding: 12px 16px;
-      border: 1px solid rgba(255,255,255,0.3);
-      border-radius: 20px;
-      margin: 10px 0;
-      cursor: pointer;
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(4px);
-      transition: 0.3s;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: #fff;
-    }
-    ul li:hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
-    .listen-count {
-      font-size: 0.85em;
-      color: #ffd1dc;
-      margin-left: 10px;
-      white-space: nowrap;
-    }
-    .player-container {
-      max-width: 400px;
-      margin: auto;
-    }
-    audio {
-      width: 100%;
-      background: transparent;
-      outline: none;
-      border-radius: 10px;
-    }
+    ul { list-style:none; padding:0; max-width: 400px; margin:auto; }
+    li { margin: 10px 0; padding: 10px; background:#ddd; cursor:pointer; }
   </style>
 </head>
 <body>
-  <h1>愛你❤</h1>
-
-  <ul id="music-list">
-    <!-- Danh sách bài hát sẽ được tạo động ở đây -->
-  </ul>
-
-  <div class="player-container">
-    <audio id="audio-player" controls></audio>
-  </div>
-
-  <!-- Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-analytics-compat.js"></script>
+  <h1>Danh sách bài hát</h1>
+  <ul id="music-list"></ul>
+  <audio id="audio-player" controls></audio>
 
   <script>
-    // Cấu hình Firebase
-    const firebaseConfig = {
-      apiKey: "AIzaSyChvbINtxQPrN7IMlkkncG1PuqOaa3ktWc",
-      authDomain: "real-time-2a5fb.firebaseapp.com",
-      databaseURL: "https://real-time-2a5fb-default-rtdb.asia-southeast1.firebasedatabase.app",
-      projectId: "real-time-2a5fb",
-      storageBucket: "real-time-2a5fb.firebasestorage.app",
-      messagingSenderId: "248912855146",
-      appId: "1:248912855146:web:9902af79d41a522808ca13",
-      measurementId: "G-V6M1DX05BE"
-    };
-
-    // Khởi tạo Firebase
-    firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
-    const db = firebase.database();
-
     const audioPlayer = document.getElementById('audio-player');
     const musicList = document.getElementById('music-list');
-
     const tracks = [
       { id: "Ythuong/Emoiem.m4a", title: "51. Em Ơi Em Đừng Khóc" },
       { id: "Yeu5.mp3", title: "52. Yêu 5" },
       { id: "Hnecr.mp3", title: "53. Hôm Nay Em Cưới Rồi" },
-      { id: "1byvdd.m4a", title: "54. 1 Bước Yêu Vạn Dặm Đau" },
-      { id: "Vocung.m4a", title: "55. Vì Anh Thương Em" },
-      { id: "Tungyeu.m4a", title: "56. Từng Yêu" },
-      { id: "Duyenminhlo.m4a", title: "57. Duyên Mình Lỡ" },
-      { id: "Hinhbongcuamay.m4a", title: "58. Hình Bóng Của Mây" },
-      { id: "Nenchohaynenquen.m4a", title: "59. Nên Chờ Hay Nên Quên" },
-      { id: "Vansutuyduyen.m4a", title: "60. Vạn Sự Tuỳ Duyên" },
-      { id: "Sophaiketthuc.m4a", title: "61. Sợ Phải Kết Thúc" },
-      { id: "Trachoem.m4a", title: "62. Trả Cho Em" },
-      { id: "Kcdt.m4a", title: "63. Khoảng Cách Đôi Ta" },
-      { id: "Acsd.m4a", title: "64. Anh Không Sao Đâu" },
-      { id: "Gvnaye.m4a", title: "65. Giả Vờ Nhưng Anh Yêu Em" },
-      { id: "1010.m4a", title: "66. 10 Mất 1 Còn 0" },
-      { id: "Vetthuongtrongtim.m4a", title: "67. Vết Thương Trong Tim" },
-      { id: "Tedg.m4a", title: "68. Thương Em Đến Già" },
-      { id: "Chila.m4a", title: "69. Chỉ Là Muốn Nói" },
-      { id: "Henuoc.m4a", title: "70. Hẹn Ước Từ Hư Vô" },
-      { id: "Ucoanhday.m4a", title: "71. Ừ Có Anh Đây" },
-      { id: "Tymt.m4a", title: "72. Tình Yêu Mang Theo" },
-      { id: "Aslnrd.m4a", title: "73. Anh Sẽ Là Người Ra Đi" },
-      { id: "Thanghau.m4a", title: "74. Thằng Hầu" },
-      { id: "Cncbd.m4a", title: "75. Chuyện Như Chưa Bắt Đầu" },
-      { id: "2cdt.m4a", title: "76. Hai Chữ Đã Từng" },
-      { id: "Cungolaanh.m4a", title: "77. Cứ Ngỡ Là Anh" },
-      { id: "tanthui.m4a", title: "78. Tình Đẹp Đến Mấy Cũng Tàn" },
-      { id: "Gm1ct.m4a", title: "79. Giấc Mơ 1 Cuộc Tình" },
-      { id: "Timve.m4a", title: "80. Tìm Về" },
-      { id: "Ycbt.m4a", title: "81. Yêu Cô Bạn Thân" },
-      { id: "Nnn.m4a", title: "82. Ngủ Ngon Nhé Vợ Tương Lai" },
-      { id: "Vtvn.m4a", title: "83. Vợ Tuyệt Vời Nhất" },
-      { id: "Anca.m4a", title: "84. Ánh Nắng Của Anh" },
-      { id: "Sautatca.m4a", title: "85. Sau Tất Cả" },
-      { id: "Snta.m4a", title: "86. Suy Nghĩ Trong Anh" },
-      { id: "Dugd.m4a", title: "87. Điều Ước Giản Đơn" },
-      { id: "Elakhongthe.m4a", title: "88. E Là Không Thể" },
-      { id: "Ctktvn.m4a", title: "89. Chúng Ta Không Thuộc Về Nhau" },
-      { id: "Dtg.m4a", title: "90. Dòng Thời Gian" },
-      { id: "Demngayxaem.m4a", title: "91. Đếm Ngày Xa Em" },
-      { id: "Dgaye.m4a", title: "92. Đơn Giản Anh Yêu Em" },
-      { id: "Btcdt.m4a", title: "93. Bản Tình Ca Đầu Tiên" },
-      { id: "Noinaycoanh.m4a", title: "94. Nơi Này Có Anh" },
-      { id: "Gap2.m4a", title: "95. Gấp Đôi Yêu Thương" },
-      { id: "Elmqvg.m4a", title: "96. Em Là Món Quà Vô Giá" },
-      { id: "Lvan.m4a", title: "97. Làm Vợ Anh Nhé" },
-      { id: "Vaycuoi.m4a", title: "98. Váy Cưới" },
-      { id: "Ttpt.m4a", title: "99. Tình Thương Phu Thê" },
-      { id: "Hpcuoicung.m4a", title: "100. Hạnh Phúc Cuối Cùng" },
+      // ...thêm đầy đủ 50 bài ở đây
     ];
 
-    let currentTrackIndex = 0;
-
     function playTrack(index) {
-      currentTrackIndex = index;
       const track = tracks[index];
       audioPlayer.src = `https://hzsunn.github.io/Music/${track.id}`;
       audioPlayer.play();
-
-      // Tăng lượt nghe lên Firebase
-      const countRef = db.ref("listens/" + track.id);
-      countRef.transaction(current => (current || 0) + 1);
-
-      // Lắng nghe thay đổi và cập nhật lượt nghe trên giao diện
-      countRef.on("value", snapshot => {
-        const count = snapshot.val() || 0;
-        const span = document.getElementById("listen-count-" + index);
-        if (span) span.textContent = `👂 ${count} lượt nghe`;
-      });
     }
 
-    // Tự chuyển bài khi hết
-    audioPlayer.addEventListener("ended", () => {
-      currentTrackIndex++;
-      if (currentTrackIndex >= tracks.length) currentTrackIndex = 0;
-      playTrack(currentTrackIndex);
-    });
-
-    // Tạo danh sách bài hát động và cập nhật lượt nghe realtime
     function renderMusicList() {
-      musicList.innerHTML = ''; // Xoá hết phần tử cũ (nếu có)
-
-      tracks.forEach((track, index) => {
-        const li = document.createElement("li");
-        li.innerHTML = `
-          <span>${track.title}</span>
-          <span class="listen-count" id="listen-count-${index}">...</span>
-        `;
-        li.onclick = () => playTrack(index);
+      musicList.innerHTML = '';
+      tracks.forEach((track, i) => {
+        const li = document.createElement('li');
+        li.textContent = track.title;
+        li.onclick = () => playTrack(i);
         musicList.appendChild(li);
-
-        // Cập nhật lượt nghe realtime
-        const countRef = db.ref("listens/" + track.id);
-        countRef.on("value", snapshot => {
-          const count = snapshot.val() || 0;
-          const el = document.getElementById("listen-count-" + index);
-          if (el) el.textContent = `👂 ${count} lượt nghe`;
-        });
       });
     }
 
     renderMusicList();
-
   </script>
 </body>
 </html>
