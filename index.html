@@ -5,6 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>🎼 Của Huyền 🎼</title>
   <style>
+    <!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-analytics.js"></script>
+
+<script>
+  // Cấu hình Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyChvbINtxQPrN7IMlkkncG1PuqOaa3ktWc",
+    authDomain: "real-time-2a5fb.firebaseapp.com",
+    databaseURL: "https://real-time-2a5fb-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "real-time-2a5fb",
+    storageBucket: "real-time-2a5fb.firebasestorage.app",
+    messagingSenderId: "248912855146",
+    appId: "1:248912855146:web:9902af79d41a522808ca13",
+    measurementId: "G-V6M1DX05BE"
+  };
+
+  // Khởi tạo Firebase
+  const app = firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+  const analytics = firebase.analytics();
+</script>
     body {
       margin: 0;
       padding: 20px;
@@ -188,10 +211,22 @@
 ];
 
   function playTrack(index) {
-    currentTrackIndex = index;
-    audioPlayer.src = `https://hzsunn.github.io/Music/${tracks[index].id}`;
-    audioPlayer.play();
-  }
+  const audioPlayer = document.getElementById('audio-player');
+  const trackId = tracks[index].id;
+
+  audioPlayer.src = `https://hzsunn.github.io/Music/${trackId}`;
+  audioPlayer.play();
+
+  // Firebase: tăng lượt nghe
+  const countRef = firebase.database().ref('listens/' + trackId);
+  countRef.transaction(current => (current || 0) + 1);
+
+  // Lấy lượt nghe và hiển thị
+  countRef.on('value', snapshot => {
+    const count = snapshot.val();
+    document.getElementById(`listen-count-${index}`).textContent = `👂 ${count} lượt nghe`;
+  });
+}
 
   // Khi bài hát kết thúc => tự phát bài tiếp theo
   audioPlayer.addEventListener('ended', () => {
